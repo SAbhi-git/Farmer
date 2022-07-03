@@ -1,0 +1,141 @@
+Main CLass:-
+
+Import Person.Farmer;
+import Person.WholeSaler;
+	public class Main {
+	    
+	    public static void main(String[] args)  {
+	
+	        WholeSaler wholeSaler1 = new WholeSaler("bada seller",(long) 123456789);
+	
+	        Farmer farmer1 = new Farmer("Abhi singh", (long) 111111111);
+	        Farmer farmer2 = new Farmer("Harsh guru", (long) 222222222);
+	        Farmer farmer3 = new Farmer("Manbir Singh", (long) 333333333);
+	        Farmer farmer4 = new Farmer("Babita Singh", (long) 444444444);
+	        Farmer farmer5 = new Farmer("Pappu nehwal", (long) 555555555);
+	        Farmer farmer6 = new Farmer("Babli Newhal", (long) 666666666);
+	        try {
+	            wholeSaler1.addFarmer(farmer1);
+	            wholeSaler1.addFarmer(farmer2);
+	            wholeSaler1.addFarmer(farmer3);
+	            wholeSaler1.addFarmer(farmer4);
+	            wholeSaler1.addFarmer(farmer5);
+	            wholeSaler1.addFarmer(farmer6);
+	
+	        } catch (Exception e) {
+	            System.out.println("You can only add 5 farmers");
+	        }
+	
+	        System.out.println("Farmers");
+	        for (Farmer one : wholeSaler1.farmers) {
+	        System.out.printf("\n Name: %s and Ph No: %s", one.getName(), one.getContact());
+	        }
+	
+	    }
+	
+	}
+
+
+Wholesale Class:-
+
+package Person;
+	
+	import java.util.LinkedList;
+	import java.util.List;
+	
+	import Exceptions.FarmerListLimitExceededException;
+	
+	public class WholeSaler extends FarmerListLimitExceededException implements Person {
+	    String name;
+	    long Ph_no;
+	
+	    public List<Farmer> farmers = new LinkedList<Farmer>();
+	
+	    public WholeSaler(String string, Long i) {
+	        this.name = string;
+	        this.Ph_no = i;
+	    }
+	
+	    public void addFarmer(Farmer f) throws FarmerListLimitExceededException {
+	
+	        if (farmers.size() > 4) {
+	            throw new FarmerListLimitExceededException();
+	
+	        } else
+	            farmers.add(one);
+	            System.out.println("Farmer "+one.getName()+" included.");
+	
+	    }
+	
+	    @Override
+	    public void addWholesaler() {
+	        // TODO Auto-generated method stub
+	
+	    }
+	
+	}
+
+
+
+package Person;
+	
+	import Exceptions.FarmerListLimitExceededException;
+	
+	interface Person {
+	   
+	    void addFarmer(Farmer one) throws FarmerListLimitExceededException;
+	
+	    void addWholesaler();
+	}
+
+
+package Person;
+	
+	public class Farmer implements Person {
+	    String name;
+	    Long Ph_no;
+	
+	    public Farmer(String name, Long i) {
+	        this.name = name;
+	        this.Ph_no = i;
+	    }
+	
+	    @Override
+	    public void addWholesaler() {
+	
+	    }
+	
+	    @Override
+	    public void addFarmer(Farmer f) {
+	
+	    }
+	
+	    public String getName() {
+	        return this.name;
+	    }
+	
+	    public long getContact() {
+	        return this.Ph_no;
+	    }
+	
+	}
+
+
+
+Exception Class:-
+
+package Exceptions;
+	public class FarmerListLimitExceededException extends Exception {
+	
+	    public FarmerListLimitExceededException() {
+	        super();
+	
+	    }
+	
+	    public FarmerListLimitExceededException(String message) {
+	
+	        System.out.println(message);
+	
+	    }
+	}
+
